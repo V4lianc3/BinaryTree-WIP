@@ -1,3 +1,5 @@
+//Binary Tree Class
+
 
 #pragma once
 
@@ -86,12 +88,12 @@ private:
 	}
 
 	// copy helper method
-	BinNode<P> copyHelper(BinNode<P> current)
+	BinNode<P>* copyHelper(BinNode<P>* current)
 	{
 		BinNode<P> *temp = nullptr;
 		if (current != nullptr)
 		{
-			temp = new BinNode<P>(current.getPayload(), copyHelper(current->getLeft()), copyHelper(current->getRight()));
+			temp = new BinNode<P>(current->getPayload(), copyHelper(current->getLeft()), copyHelper(current->getRight()));
 			
 		}
 			
@@ -110,14 +112,14 @@ public:
 	}
 
 	
-	/*BTree(const &BTree)
+	BTree(const &BTree)
 	{
 		head = BTree.head;
 		traverseOrder = BTree.traverseOrder();
 
-		copyhelper(BTree.head);
+		this = copyhelper(BTree.head);
 	}
-*/
+
 	// //Deconstructor
 	//~BTree()
 	//{
@@ -199,12 +201,9 @@ public:
 	 BTree& operator =(const BTree& fromTree)
 	{
 		
-		 if (this->head == fromTree.head)
+		 if (this != &fromTree)
 		 {
-
-		 }
-		 else
-		 {
+			 
 			 //clearTree();
 			 this->head = copyHelper(fromTree.getRoot());
 		 }
