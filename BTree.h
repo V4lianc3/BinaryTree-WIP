@@ -31,7 +31,7 @@ private:
 			
 		}
 	}
-
+	// Inorder output method
 	void inOrderOutputHelper(ostream& outStream, BinNode<P> *current) const
 	{
 
@@ -43,6 +43,7 @@ private:
 		}
 	}
 
+	// preorder output method
 	void preOrderOutputHelper(ostream& outStream, BinNode<P> *current) const
 	{
 		if (current != nullptr)
@@ -54,6 +55,7 @@ private:
 		}
 	}
 
+	// breadthorder output method
 	void breadthOrderOutputHelper(ostream& outStream, BinNode<P> *current) const
 	{
 		Queue<BinNode<P>*> BinQueue;
@@ -111,20 +113,20 @@ public:
 		traverseOrder = TraverseType::BREADTHORDER;
 	}
 
-	
-	BTree(const &BTree)
+	// copy constructor
+	BTree(const BTree &fromTree)
 	{
-		head = BTree.head;
-		traverseOrder = BTree.traverseOrder();
+		this->head = fromTree.getRoot();
+		this->traverseOrder = fromTree.traverseOrder;
 
-		this = copyhelper(BTree.head);
+		this->head = copyHelper(fromTree.head);
 	}
 
-	// //Deconstructor
-	//~BTree()
-	//{
-	//	clearTree(head);
-	//}
+	 //Deconstructor
+	~BTree()
+	{
+		clearTree(this->head);
+	}
 
 
 	// Set traverse order
@@ -204,7 +206,7 @@ public:
 		 if (this != &fromTree)
 		 {
 			 
-			 //clearTree();
+			 clearTree(this->head);
 			 this->head = copyHelper(fromTree.getRoot());
 		 }
 
