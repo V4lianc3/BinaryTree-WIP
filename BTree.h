@@ -109,7 +109,7 @@ public:
 	//Default constructor
 	BTree()
 	{
-		BinNode<P> *head = nullptr;
+		head = nullptr;
 		traverseOrder = TraverseType::BREADTHORDER;
 	}
 
