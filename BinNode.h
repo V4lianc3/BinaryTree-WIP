@@ -1,11 +1,3 @@
-
-		// Destructor
-		~BinNode()
-		{
-	
-		}
-	};
-
 #pragma once
 
 // includes
