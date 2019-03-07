@@ -8,7 +8,7 @@
 #include "Queue.h"
 using namespace std;
 
-enum class TraverseType { BREADTHORDER, PREORDER, INORDER, POSTORDER, Default = BREADTHORDER};
+enum class TraverseType { BREADTHORDER, PREORDER, INORDER, POSTORDER, Default = BREADTHORDER };
 
 template <class P>
 class BTree
@@ -28,7 +28,7 @@ private:
 			postOrderOutputHelper(outStream, current->getLeft());
 			postOrderOutputHelper(outStream, current->getRight());
 			outStream << *current;
-			
+
 		}
 	}
 	// Inorder output method
@@ -59,7 +59,7 @@ private:
 	void breadthOrderOutputHelper(ostream& outStream, BinNode<P> *current) const
 	{
 		Queue<BinNode<P>*> BinQueue;
-		
+
 		if (current != nullptr)
 		{
 			BinQueue.enqueue(current);
@@ -68,8 +68,8 @@ private:
 			{
 				current = BinQueue.dequeue();
 				outStream << current->getPayload();
-				
-				
+
+
 				if (current->getLeft() != nullptr)
 				{
 					BinQueue.enqueue(current->getLeft());
@@ -80,13 +80,13 @@ private:
 					BinQueue.enqueue(current->getRight());
 				}
 
-				
+
 			}
 
-			
+
 		}
 
-		
+
 	}
 
 	// copy helper method
@@ -96,13 +96,13 @@ private:
 		if (current != nullptr)
 		{
 			temp = new BinNode<P>(current->getPayload(), copyHelper(current->getLeft()), copyHelper(current->getRight()));
-			
+
 		}
-			
+
 		return temp;
 	}
 
-	
+
 public:
 
 
@@ -116,13 +116,12 @@ public:
 	// copy constructor
 	BTree(const BTree &fromTree)
 	{
-		this->head = fromTree.getRoot();
 		this->traverseOrder = fromTree.traverseOrder;
 
 		this->head = copyHelper(fromTree.head);
 	}
 
-	 //Deconstructor
+	//Deconstructor
 	~BTree()
 	{
 		clearTree(this->head);
@@ -141,7 +140,7 @@ public:
 		return head;
 	}
 
-	
+
 	// Mutators
 	void setHead(BinNode<P> *node)
 	{
@@ -163,35 +162,33 @@ public:
 
 
 	// << overload
-	friend ostream& operator <<(ostream& outStream, BTree tree)
+	friend ostream& operator <<(ostream& outStream, const BTree tree)
 	{
 		switch (tree.traverseOrder)
 		{
-			case TraverseType::INORDER:
-			{
-				tree.inOrderOutputHelper(outStream, tree.head);
-				break;
-			}
+		case TraverseType::INORDER:
+		{
+			tree.inOrderOutputHelper(outStream, tree.head);
+			break;
+		}
 
-			case TraverseType::PREORDER:
-			{
-				tree.preOrderOutputHelper(outStream, tree.head);
-				break;
-			}
+		case TraverseType::PREORDER:
+		{
+			tree.preOrderOutputHelper(outStream, tree.head);
+			break;
+		}
 
-			case TraverseType::POSTORDER:
-			{
-				tree.postOrderOutputHelper(outStream, tree.head);
-				break;
-			}
+		case TraverseType::POSTORDER:
+		{
+			tree.postOrderOutputHelper(outStream, tree.head);
+			break;
+		}
 
 
-			case TraverseType::BREADTHORDER:
-			{
-				tree.breadthOrderOutputHelper(outStream, tree.head);
-			}
-
-			
+		case TraverseType::BREADTHORDER:
+		{
+			tree.breadthOrderOutputHelper(outStream, tree.head);
+		}
 
 		}
 
@@ -200,15 +197,15 @@ public:
 
 
 	// = overload
-	 BTree& operator =(const BTree& fromTree)
+	BTree& operator =(const BTree& fromTree)
 	{
-		
-		 if (this != &fromTree)
-		 {
-			 
-			 clearTree(this->head);
-			 this->head = copyHelper(fromTree.getRoot());
-		 }
+
+		if (this != &fromTree)
+		{
+			clearTree(this->head);
+			this->head = copyHelper(fromTree.getRoot());
+			this->traverseOrder = fromTree.traverseOrder;
+		}
 
 
 		return *this;
