@@ -1,3 +1,11 @@
+
+		// Destructor
+		~BinNode()
+		{
+	
+		}
+	};
+
 #pragma once
 
 // includes
@@ -41,66 +49,52 @@ public:
 
 	BinNode* getLeft() const
 	{
-		try
-		{
+		
 			// get left pointer
 			return left;
-		}
-		catch (const std::exception&)
-		{
-			cout << "Get left is nullptr." << endl;
-		}
 		
-
 	}
 
 	BinNode* getRight() const
 	{
-		try
-		{
+		
 			//get the right pointer
 			return right;
-		}
-		catch (const std::exception&)
-		{
-			cout << "Get right is nullptr." << endl;
-		}
 		
 	}
 
-		// mutators
-		void setPayload(P newPayload)
-		{
-			// set the payload
-			payload = newPayload;
-	
-		}
-	
-		void setLeft(BinNode *newLeft)
-		{
-			// set the new pointer
-	
-			left = newLeft;
-	
-		}
-	
-		void setRight(BinNode *newRight)
-		{
-			// set the new right pointer
-			right = newRight;
-		}
-	
-		// Operator Overload
-		friend ostream& operator <<(ostream& outStream, const BinNode& node)
-		{
-			outStream << node.getPayload();
-			return outStream;
-		}
-	
-		// Destructor
-		~BinNode()
-		{
-	
-		}
-	};
+	// mutators
+	void setPayload(P newPayload)
+	{
+		// set the payload
+		payload = newPayload;
 
+	}
+
+	void setLeft(BinNode *newLeft)
+	{
+		// set the new pointer
+
+		left = newLeft;
+
+	}
+
+	void setRight(BinNode *newRight)
+	{
+		// set the new right pointer
+		right = newRight;
+	}
+
+	// Operator Overload
+	friend ostream& operator <<(ostream& outStream, const BinNode& node)
+	{
+		outStream << node.getPayload();
+		return outStream;
+	}
+
+	// Destructor
+	~BinNode()
+	{
+
+	}
+};
